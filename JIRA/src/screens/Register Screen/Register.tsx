@@ -11,6 +11,8 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleRegister = () => {};
   return (
     <View style={styles.container}>
       <Text style={styles.text}>SIGN UP</Text>
