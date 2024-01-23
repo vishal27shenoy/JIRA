@@ -4,10 +4,13 @@ import {color} from '../constants/color';
 import {font} from '../constants/font';
 import {responsiveScreenHeight} from 'react-native-responsive-dimensions';
 
-const HelperComponent = ({placeholder, type}: any) => {
+const HelperComponent = ({placeholder, type, onPress}: any) => {
   return (
     <Text style={styles.helperText}>
-      {placeholder} <Text style={styles.typeText}>{type}</Text>
+      {placeholder}{' '}
+      <Text style={styles.typeText} onPress={onPress}>
+        {type}
+      </Text>
     </Text>
   );
 };
