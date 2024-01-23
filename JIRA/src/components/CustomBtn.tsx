@@ -8,9 +8,9 @@ import {
 import {color} from '../constants/color';
 import {font} from '../constants/font';
 
-const CustomBtn = ({placeholder}: any) => {
+const CustomBtn = ({placeholder, onPress}: any) => {
   return (
-    <Pressable style={styles.btnContainer}>
+    <Pressable onPress={onPress} style={styles.btnContainer}>
       <Text style={styles.btnText}>{placeholder}</Text>
     </Pressable>
   );
