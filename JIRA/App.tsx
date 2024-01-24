@@ -6,13 +6,14 @@ import Register from './src/screens/Auth/Register';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
+import MBottomTabs from './src/navigation/manager bottom tabs/MBottomTabs';
 
 const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
+      <Stack.Navigator screenOptions={{animationEnabled: false}}>
+        {/* <Stack.Screen
           key="Login"
           name="Login"
           component={Login}
@@ -25,7 +26,8 @@ const App = () => {
           component={Register}
           options={{
             headerShown: false,
-          }}></Stack.Screen>
+          }}></Stack.Screen> */}
+        <Stack.Screen component={MBottomTabs} name="managerbottomtabs" />
       </Stack.Navigator>
     </NavigationContainer>
   );
