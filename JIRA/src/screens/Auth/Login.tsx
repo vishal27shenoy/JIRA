@@ -11,7 +11,6 @@ import {font} from '../../constants/font';
 import TextField from '../../components/TextField';
 import CustomBtn from '../../components/CustomBtn';
 import HelperComponent from '../../components/HelperComponent';
-
 import {Formik} from 'formik';
 
 import * as yup from 'yup';
@@ -28,25 +27,15 @@ const loginValidationSchema = yup.object().shape({
 });
 
 const Login = ({navigation}: any) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {
+  const [loading, setLoading] = useState(false);
+  const handleLogin = async (data: any) => {
     try {
+      setLoading(true);
       console.log('calling');
+      navigation.replace('employeebottomtabs');
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const navigateToRegister = () => {
-    navigation.navigate('Register');
   };
   return (
     <View style={styles.loginContainer}>
@@ -91,9 +80,13 @@ const Login = ({navigation}: any) => {
               <HelperComponent
                 placeholder={'Dont have an account ?'}
                 type={'Register'}
-                onPress={navigateToRegister}
+                onPress={() => navigation.replace('Register')}
               />
-              <CustomBtn onPress={handleSubmit} placeholder={'Login'} />
+              <CustomBtn
+                onPress={handleSubmit}
+                placeholder={'Login'}
+                load={loading}
+              />
             </>
           );
         }}

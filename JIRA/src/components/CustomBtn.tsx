@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  ActivityIndicator,
+} from 'react-native';
 import React, {memo} from 'react';
 import {
   responsiveFontSize,
@@ -8,10 +14,12 @@ import {
 import {color} from '../constants/color';
 import {font} from '../constants/font';
 
-const CustomBtn = ({placeholder, onPress}: any) => {
+const CustomBtn = ({placeholder, onPress, load}: any) => {
   return (
     <Pressable onPress={onPress} style={styles.btnContainer}>
-      <Text style={styles.btnText}>{placeholder}</Text>
+      <Text style={styles.btnText}>
+        {load ? <ActivityIndicator color={color.PRIMARY} /> : placeholder}
+      </Text>
     </Pressable>
   );
 };

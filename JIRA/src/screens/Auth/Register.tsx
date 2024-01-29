@@ -5,6 +5,7 @@ import {
   Text,
   View,
   ToastAndroid,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
 import {color} from '../../constants/color';
@@ -21,6 +22,10 @@ import axios, {AxiosError} from 'axios';
 import {BASE_URL} from '../../constants/api';
 
 const registerValidationSchema = yup.object().shape({
+  fullName: yup
+    .string()
+    .min(5, ({min}) => `fullName must be at least ${min} characters`)
+    .required('fullName is required'),
   email: yup
     .string()
     .email('Please enter valid email')
@@ -30,11 +35,9 @@ const registerValidationSchema = yup.object().shape({
     .min(8, ({min}) => `Password must be at least ${min} characters`)
     .required('Password is required'),
 });
-const Register = ({navigation}: any) => {
-  const navigateToLogin = () => {
-    navigation.navigate('Register');
-  };
 
+const Register = ({navigation}: any) => {
+  const [loading, setLoading] = useState(false);
   const handleRegister = async (data: any) => {
     console.log(data);
     try {
@@ -68,7 +71,7 @@ const Register = ({navigation}: any) => {
           return (
             <>
               <TextField
-                placeholder={'Enter your username'}
+                placeholder={'Enter your fullName'}
                 iconName={'user'}
                 type={'AntDesign'}
                 value={values.fullName}
@@ -107,10 +110,14 @@ const Register = ({navigation}: any) => {
               <HelperComponent
                 placeholder={'Already a user ?'}
                 type={'Login'}
-                onPress={navigateToLogin}
+                onPress={() => navigation.replace('Login')}
               />
 
-              <CustomBtn placeholder={'Register'} onPress={handleSubmit} />
+              <CustomBtn
+                placeholder={'Register'}
+                onPress={handleSubmit}
+                load={loading}
+              />
             </>
           );
         }}

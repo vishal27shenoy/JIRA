@@ -11,6 +11,7 @@ import {
 } from 'react-native-responsive-dimensions';
 import Myicon from '../../helper/Myicon';
 import {color} from '../../constants/color';
+import {font} from '../../constants/font';
 const Tab = createBottomTabNavigator();
 const routes = [
   {
@@ -38,7 +39,7 @@ const routes = [
     iconType: 'AntDesign',
   },
 ];
-const MBottomTabs = () => {
+const EmployeeBottomTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -49,7 +50,10 @@ const MBottomTabs = () => {
         tabBarLabelStyle: {
           marginTop: -responsiveHeight(1),
         },
-        headerShown: false,
+        headerTitleStyle: {
+          fontFamily: font.BOLD,
+          color: color.SECONDARY,
+        },
       }}>
       {routes.map(item => {
         return (
@@ -73,5 +77,5 @@ const MBottomTabs = () => {
     </Tab.Navigator>
   );
 };
-export default MBottomTabs;
+export default EmployeeBottomTabs;
 const styles = StyleSheet.create({});
